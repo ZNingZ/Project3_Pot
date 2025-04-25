@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>StarTalk Weekly – Celebrity Ning</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StarTalk Weekly – Celebrity Ning</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="stylesheet/style.css">
   <style>
-    /* Minimal CSS in case stylesheet isn't linked yet */
     body {
       margin: 0;
       font-family: 'Helvetica Neue', sans-serif;
@@ -63,6 +61,14 @@
       scroll-snap-type: x mandatory;
       gap: 1rem;
       padding: 2rem;
+      scroll-behavior: smooth;
+
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE */
+    }
+
+    .cards::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
     }
 
     .card {
@@ -177,7 +183,6 @@
   <section class="gallery">
     <h2>Spotlight Photo Gallery</h2>
     <p>Click to view your P-montage looks, red carpet edits, and scandal snaps!</p>
-    <!-- Add clickable images later -->
   </section>
 
   <section class="vote-section">
@@ -205,6 +210,20 @@
         result.textContent = "💥 28% still rooting for Director B!";
       }
     }
+
+    // 自动轮播卡片
+    const cardsContainer = document.querySelector('.cards');
+    const cards = document.querySelectorAll('.card');
+    let currentIndex = 0;
+
+    setInterval(() => {
+      currentIndex++;
+      if (currentIndex >= cards.length) {
+        currentIndex = 0;
+      }
+      const scrollX = cards[currentIndex].offsetLeft - cardsContainer.offsetLeft;
+      cardsContainer.scrollTo({ left: scrollX, behavior: 'smooth' });
+    }, 3000);
   </script>
 
 </body>
