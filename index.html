@@ -2,12 +2,210 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="stylesheet/style.css">
-	</head>
+		<title>StarTalk Weekly – Celebrity Ning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylesheet/style.css">
+  <style>
+    /* Minimal CSS in case stylesheet isn't linked yet */
+    body {
+      margin: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background: #fff;
+      color: #111;
+    }
 
-	<body>
-		<h1>Webzine!</h1>
-		<h2>Test</h2>
-		<!-- put in your webzine content here -->
-	</body>
+    header {
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      background-color: #fafafa;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #555;
+    }
+
+    .hero {
+      background: url('images/your-face-on-banner.jpg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      text-shadow: 2px 2px 10px #000;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .headline {
+      padding: 2rem;
+      background: #f4f4f4;
+    }
+
+    .cards {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .card {
+      flex: 0 0 80%;
+      scroll-snap-align: center;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .shape {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      background: pink;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+      cursor: pointer;
+    }
+
+    .popup {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      background: white;
+      border: 1px solid #aaa;
+      padding: 1rem;
+      width: 200px;
+      z-index: 10;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .vote-section {
+      padding: 2rem;
+      background: #eee;
+      text-align: center;
+    }
+
+    .vote-section button {
+      margin: 1rem;
+      padding: 0.5rem 1.5rem;
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .gallery {
+      padding: 2rem;
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #999;
+      border-top: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>StarTalk Weekly</h1>
+    <p>The only gossip magazine where *you* are the star 🌟</p>
+  </header>
+
+  <nav>
+    <a href="#">Headlines</a>
+    <a href="#">Romance</a>
+    <a href="#">Style</a>
+    <a href="#">Interviews</a>
+    <a href="#">Trending</a>
+  </nav>
+
+  <section class="hero">
+    This Week’s Exclusive: Did She Really Get Back With Him?
+  </section>
+
+  <section class="headline">
+    <h2>BREAKING: Ning spotted in Paris with mystery man</h2>
+    <p>Late night dinner, matching rings, and a single hotel room—sources say it's more than just a coincidence.</p>
+  </section>
+
+  <section class="cards">
+    <div class="card">
+      <h3>Fashion Breakdown: Stunning or Chaotic?</h3>
+      <p>Ning’s cut-out sweater at the airport has fans divided.</p>
+      <div class="shape" onclick="togglePopup(0)"></div>
+      <div class="popup" id="popup-0">Style choice: “I love being unpredictable.” – Ning</div>
+    </div>
+
+    <div class="card">
+      <h3>Love Life: Reunited with the Ex?</h3>
+      <p>Paparazzi caught them leaving the same building. Coincidence?</p>
+      <div class="shape" onclick="togglePopup(1)"></div>
+      <div class="popup" id="popup-1">Rumor: It's her *ex* director boyfriend 👀</div>
+    </div>
+
+    <div class="card">
+      <h3>Interview: “I’m not here to be perfect.”</h3>
+      <p>In a candid moment, Ning opens up about fame, freedom, and fake friendships.</p>
+      <div class="shape" onclick="togglePopup(2)"></div>
+      <div class="popup" id="popup-2">💬 “This industry eats you up unless you bite back.”</div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2>Spotlight Photo Gallery</h2>
+    <p>Click to view your P-montage looks, red carpet edits, and scandal snaps!</p>
+    <!-- Add clickable images later -->
+  </section>
+
+  <section class="vote-section">
+    <h2>Whose side are you on?</h2>
+    <button onclick="vote('a')">Ning × Actor A</button>
+    <button onclick="vote('b')">Ning × Director B</button>
+    <div id="vote-result"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 StarTalk Weekly | All stories are 100% fictional & fabulous ✨
+  </footer>
+
+  <script>
+    function togglePopup(index) {
+      const popup = document.getElementById(`popup-${index}`);
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function vote(option) {
+      const result = document.getElementById("vote-result");
+      if (option === 'a') {
+        result.textContent = "🔥 72% say Ning × Actor A is real!";
+      } else {
+        result.textContent = "💥 28% still rooting for Director B!";
+      }
+    }
+  </script>
+
+</body>
 </html>
