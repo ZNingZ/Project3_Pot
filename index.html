@@ -184,6 +184,27 @@
       padding: 2rem;
     }
 
+    .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
     footer {
       padding: 2rem;
       text-align: center;
@@ -191,6 +212,8 @@
       color: #999;
       border-top: 1px solid #ccc;
     }
+
+
   </style>
 </head>
 
@@ -247,11 +270,16 @@
   </section>
 
   <section class="gallery">
-    <a href="style.html" style="text-decoration: none; color: inherit;">
-      <h2>Spotlight Photo Gallery</h2>
-      <p>Click to view your P-montage looks, red carpet edits, and scandal snaps!</p>
-    </a>
-  </section>
+  <h2>Spotlight Photo Gallery</h2>
+  <p>Click to view your P-montage looks, red carpet edits, and scandal snaps!</p>
+
+  <div class="gallery-grid">
+    <img src="https://i.imgur.com/XxNlE92.png" alt="Look 1">
+    <img src="https://i.imgur.com/tRQScUP.png" alt="Look 2">
+    <img src="https://i.imgur.com/tB3laep.png" alt="Look 3">
+    <img src="https://i.imgur.com/cohr4X0.png" alt="Look 4">
+  </div>
+</section>
 
   <section class="vote-section">
     <h2>Whose side are you on?</h2>
