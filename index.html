@@ -130,13 +130,72 @@
       color: #999;
       border-top: 1px solid #ccc;
     }
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  margin-top: 3rem; /* ⭐ 加这行，增加与上面的间隔 */
+}
+
+.hero-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 1;
+}
+
+/* 新增的左右渐变 */
+.hero-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 15%, rgba(255,255,255,0) 85%, rgba(255,255,255,1) 100%);
+  pointer-events: none; /* 遮罩不挡点击 */
+    filter: blur(2px);
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+  padding: 1rem;
+  z-index: 3;
+}
+
+.hero-image {
+  width: 90%;
+  height: auto;
+  margin-top: 1rem;
+  border: 1px solid #ddd;
+
+}
   </style>
 </head>
 
 <body>
 
   <header>
-    <h1>StarTalk Weekly</h1>
+    <h1>THE POTS</h1>
     <p>The only gossip magazine where *you* are the star 🌟</p>
   </header>
 
@@ -148,13 +207,22 @@
     <a href="trending.html">Trending</a>
   </nav>
 
-  <section class="hero">
+
+
+<section class="hero">
+  <img src="https://i.imgur.com/bon8pbF.jpeg" alt="Ning in Paris" class="hero-image">
+   <div class="hero-overlay"></div>
+  <div class="hero-text">
     This Week’s Exclusive: Did She Really Get Back With Him?
-  </section>
+  </div>
+ <div class="hero-gradient"></div> <!-- ⭐ 新加的左右渐变遮罩 -->
+  
+</section>
 
   <section class="headline">
     <h2>BREAKING: Ning spotted in Paris with mystery man</h2>
     <p>Late night dinner, matching rings, and a single hotel room—sources say it's more than just a coincidence.</p>
+    
   </section>
 
   <section class="cards">
