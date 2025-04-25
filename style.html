@@ -35,6 +35,19 @@
       text-decoration: none;
       font-weight: bold;
       color: #555;
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover {
+      background: #eee;
+    }
+
+    nav a:active {
+      transform: scale(0.96);
+      background: #ddd;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .gallery-section {
@@ -66,6 +79,7 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 8px;
+      cursor: pointer;
     }
 
     footer {
@@ -75,6 +89,51 @@
       font-size: 0.8rem;
       color: #999;
       border-top: 1px solid #ccc;
+    }
+
+    /* Lightbox 样式 */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .lightbox-placeholder {
+      width: 600px;
+      height: 600px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      border: 5px solid white;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.5rem;
+      z-index: 1000;
+    }
+
+    .arrow.left {
+      left: 2rem;
+    }
+
+    .arrow.right {
+      right: 2rem;
     }
   </style>
 </head>
@@ -97,20 +156,60 @@
   <section class="gallery-section">
     <h2>Spotlight Photo Gallery</h2>
     <div class="gallery-grid">
-      <div class="placeholder-photo">[ Photo ]</div>
-      <div class="placeholder-photo">[ Photo ]</div>
-      <div class="placeholder-photo">[ Photo ]</div>
-      <div class="placeholder-photo">[ Photo ]</div>
-      <div class="placeholder-photo">[ Photo ]</div>
-      <div class="placeholder-photo">[ Photo ]</div>
-      <div class="placeholder-photo">[ Photo ]</div>
-      <div class="placeholder-photo">[ Photo ]</div>
+      <div class="placeholder-photo" onclick="openLightbox(0)">[ Photo 1 ]</div>
+      <div class="placeholder-photo" onclick="openLightbox(1)">[ Photo 2 ]</div>
+      <div class="placeholder-photo" onclick="openLightbox(2)">[ Photo 3 ]</div>
+      <div class="placeholder-photo" onclick="openLightbox(3)">[ Photo 4 ]</div>
+      <div class="placeholder-photo" onclick="openLightbox(4)">[ Photo 5 ]</div>
+      <div class="placeholder-photo" onclick="openLightbox(5)">[ Photo 6 ]</div>
+      <div class="placeholder-photo" onclick="openLightbox(6)">[ Photo 7 ]</div>
+      <div class="placeholder-photo" onclick="openLightbox(7)">[ Photo 8 ]</div>
     </div>
   </section>
 
   <footer>
     &copy; 2025 StarTalk Weekly | All stories are 100% fictional & fabulous ✨
   </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <div class="arrow left" onclick="prevPhoto(event)">‹</div>
+    <div class="lightbox-placeholder" id="lightbox-placeholder">[ Photo ]</div>
+    <div class="arrow right" onclick="nextPhoto(event)">›</div>
+  </div>
+
+  <script>
+    const totalPhotos = 8;
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      updateLightbox();
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    function closeLightbox(event) {
+      if (event.target.id === 'lightbox') {
+        document.getElementById('lightbox').style.display = 'none';
+      }
+    }
+
+    function nextPhoto(event) {
+      event.stopPropagation();
+      currentIndex = (currentIndex + 1) % totalPhotos;
+      updateLightbox();
+    }
+
+    function prevPhoto(event) {
+      event.stopPropagation();
+      currentIndex = (currentIndex - 1 + totalPhotos) % totalPhotos;
+      updateLightbox();
+    }
+
+    function updateLightbox() {
+      document.getElementById('lightbox-placeholder').innerText = `[ Photo ${currentIndex + 1} ]`;
+    }
+  </script>
 
 </body>
 </html>
