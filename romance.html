@@ -100,6 +100,23 @@
       color: #999;
       border-top: 1px solid #ccc;
     }
+    .side-label {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: #111;
+  background-color: white;
+  padding: 1rem 0.5rem;
+  letter-spacing: 0.15rem;
+  z-index: 1000;
+  border-right: 2px solid #ccc;
+}
   </style>
 </head>
 
@@ -108,6 +125,7 @@
   <header>
     <h1>ROMANCE</h1>
     <p>The only gossip magazine where *you* are the star 🌟</p>
+
   </header>
 
   <nav>
@@ -133,7 +151,8 @@
 
     <p>Right now, no one knows if they’re getting back together or just meeting as friends. But one thing is clear — Ning always grabs attention.</p>
     
-
+  </div>
+  <div class="side-label">ROMANCE</div>
   </section>
 
   <footer>
