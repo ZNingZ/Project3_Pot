@@ -55,6 +55,7 @@
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
     }
 
+
     .gallery-section {
       max-width: 960px;
       margin: 3rem auto;
@@ -67,21 +68,15 @@
       margin-bottom: 2rem;
       text-align: center;
     }
-
-    .placeholder-photo {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #888;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
+.placeholder-photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -111,7 +106,7 @@
 
     .feature-post .feature-image {
       max-width: 720px;
-      height: 350px;
+      height: 700px;
       margin: 0 auto 3rem;
       font-size: 1.2rem;
       background: #ddd;
@@ -177,6 +172,25 @@
     .arrow.right {
       right: 2rem;
     }
+
+.side-label {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  color: #111;
+  background-color: white;
+  padding: 1rem 0.5rem;
+  letter-spacing: 0.15rem;
+  z-index: 1000;
+  border-right: 2px solid #ccc;
+}
+
   </style>
 </head>
 
@@ -203,26 +217,30 @@
       <p class="description">
         Onlookers were quick to snap photos of Ning as she strutted through the terminal in an oversized trench coat and a shocking cut-out knit underneath. Some praised her avant-garde boldness, while others questioned if it was fashion or faux-pas. Either way, she’s trending again.
       </p>
-      <div class="feature-image">
-        [ Fashion Post Photo ]
-      </div>
+    <div class="feature-image">
+  <img src="https://i.imgur.com/SXTNpbn.jpeg" alt="Fashion Post Photo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+</div>
+<p class="description">
+  Just minutes after the photos hit socials, hashtags like <em>#AirportServe</em> and <em>#SweaterGate</em> started trending. While fashion critics debated the look’s structural intent, fans dissected every angle—zooming in on the asymmetry, the peek of midriff, and whether the look was a spontaneous choice or part of a calculated PR moment. Sources close to Ning say she “didn’t blink once” at the flashing cameras. Confidence? Chaos? Maybe both—and that’s exactly the point.
+</p>
     </div>
+  <div class="side-label">FASHION</div>
   </section>
 
   <!-- Original Photo Gallery -->
-  <section class="gallery-section">
-    <h2>Spotlight Photo Gallery</h2>
-    <div class="gallery-grid">
-      <div class="placeholder-photo" onclick="openLightbox(0)">[ Photo 1 ]</div>
-      <div class="placeholder-photo" onclick="openLightbox(1)">[ Photo 2 ]</div>
-      <div class="placeholder-photo" onclick="openLightbox(2)">[ Photo 3 ]</div>
-      <div class="placeholder-photo" onclick="openLightbox(3)">[ Photo 4 ]</div>
-      <div class="placeholder-photo" onclick="openLightbox(4)">[ Photo 5 ]</div>
-      <div class="placeholder-photo" onclick="openLightbox(5)">[ Photo 6 ]</div>
-      <div class="placeholder-photo" onclick="openLightbox(6)">[ Photo 7 ]</div>
-      <div class="placeholder-photo" onclick="openLightbox(7)">[ Photo 8 ]</div>
-    </div>
-  </section>
+<section class="gallery-section">
+  <h2>Spotlight Photo Gallery</h2>
+  <div class="gallery-grid">
+    <img src="https://i.imgur.com/0dX3nAH.png" alt="Photo 1" onclick="openLightbox(0)" class="placeholder-photo">
+    <img src="https://i.imgur.com/KFcMCTI.png" alt="Photo 2" onclick="openLightbox(1)" class="placeholder-photo">
+    <img src="https://i.imgur.com/0kmjGqd.png" alt="Photo 3" onclick="openLightbox(2)" class="placeholder-photo">
+    <img src="https://i.imgur.com/rMaVx0x.png" alt="Photo 4" onclick="openLightbox(3)" class="placeholder-photo">
+    <img src="https://i.imgur.com/Wt5WGN4.png" alt="Photo 5" onclick="openLightbox(4)" class="placeholder-photo">
+    <img src="https://i.imgur.com/vO4DM8x.png" alt="Photo 6" onclick="openLightbox(5)" class="placeholder-photo">
+    <img src="https://i.imgur.com/Z7FPU4V.png" alt="Photo 7" onclick="openLightbox(6)" class="placeholder-photo">
+    <img src="https://i.imgur.com/gbLvpHe.png" alt="Photo 8" onclick="openLightbox(7)" class="placeholder-photo">
+  </div>
+</section>
 
   <footer>
     &copy; 2025 StarTalk Weekly | All stories are 100% fictional & fabulous ✨
@@ -236,6 +254,16 @@
   </div>
 
   <script>
+    const photoUrls = [
+  "https://i.imgur.com/0dX3nAH.png",
+  "https://i.imgur.com/KFcMCTI.png",
+  "https://i.imgur.com/0kmjGqd.png",
+  "https://i.imgur.com/rMaVx0x.png",
+  "https://i.imgur.com/Wt5WGN4.png",
+  "https://i.imgur.com/vO4DM8x.png",
+  "https://i.imgur.com/Z7FPU4V.png",
+  "https://i.imgur.com/gbLvpHe.png"
+];
     const totalPhotos = 8;
     let currentIndex = 0;
 
@@ -263,9 +291,10 @@
       updateLightbox();
     }
 
-    function updateLightbox() {
-      document.getElementById('lightbox-placeholder').innerText = `[ Photo ${currentIndex + 1} ]`;
-    }
+   function updateLightbox() {
+  const placeholder = document.getElementById('lightbox-placeholder');
+  placeholder.innerHTML = `<img src="${photoUrls[currentIndex]}" style="max-width: 90vw; max-height: 90vh; border-radius: 10px; border: 5px solid white;">`;
+}
   </script>
 
 </body>
