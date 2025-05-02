@@ -1,34 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>StarTalk Weekly – Celebrity Ning</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-  <style>
-    body {
-  margin: 0;
-  font-family: 'Lora', serif;
-  font-size: 18px;
-  line-height: 1.6;
-  background: #fff;
-  color: #111;
-}
-
-header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  letter-spacing: 1px;
-}
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora&family=Playfair+Display:wght@600&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
+      font-family: 'Lora', serif;
+      font-size: 18px;
+      line-height: 1.6;
       background: #fff;
       color: #111;
     }
-
 
     header {
       padding: 2rem;
@@ -37,10 +22,10 @@ header h1 {
     }
 
     header h1 {
+      font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
       letter-spacing: 1px;
     }
-
 
     nav {
       display: flex;
@@ -72,16 +57,23 @@ header h1 {
     .hero {
       position: relative;
       width: 100%;
-      height: 70vh;
+      height: 80vh;
       overflow: hidden;
       margin-top: 3rem;
       cursor: pointer;
     }
 
-    .hero-background {
+    .hero-slide {
+      display: flex;
+      height: 100%;
+      transition: transform 1s ease;
+    }
+
+    .hero-slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      flex-shrink: 0;
     }
 
     .hero-overlay {
@@ -90,20 +82,8 @@ header h1 {
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.4);
+      background: rgba(0, 0, 0, 0.4);
       z-index: 1;
-    }
-
-    .hero-gradient {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 15%, rgba(255,255,255,0) 85%, rgba(255,255,255,1) 100%);
-      filter: blur(2px);
-      z-index: 2;
-      pointer-events: none;
     }
 
     .hero-text {
@@ -115,20 +95,10 @@ header h1 {
       font-size: 2rem;
       font-weight: bold;
       text-align: center;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
       padding: 1rem;
-      z-index: 3;
+      z-index: 2;
       white-space: nowrap;
-    }
-
-    .hero-image {
-      width: 90%;
-      height: auto;
-      margin-top: 1rem;
-      border: 1px solid #ddd;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .headline {
@@ -138,13 +108,11 @@ header h1 {
 
     .cards {
       display: flex;
-      overflow-x: scroll;
+      overflow-x: auto;
       scroll-snap-type: x mandatory;
       gap: 1rem;
       padding: 2rem;
       scroll-behavior: smooth;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
     }
 
     .cards::-webkit-scrollbar {
@@ -152,7 +120,8 @@ header h1 {
     }
 
     .card {
-      flex: 0 0 80%;
+      flex: 0 0 90vw;
+      max-width: 700px;
       scroll-snap-align: center;
       background: #fff;
       border: 1px solid #ccc;
@@ -182,7 +151,7 @@ header h1 {
       padding: 1rem;
       width: 200px;
       z-index: 10;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .vote-section {
@@ -206,7 +175,7 @@ header h1 {
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1rem;
       margin-top: 2rem;
     }
@@ -232,13 +201,9 @@ header h1 {
       color: #999;
       border-top: 1px solid #ccc;
     }
-
   </style>
-
-  </head>
-
-  <body>
-
+</head>
+<body>
   <header>
     <h1>THE POTS</h1>
     <p>The only gossip magazine where *you* are the star 🌟</p>
@@ -253,10 +218,13 @@ header h1 {
   </nav>
 
   <section class="hero" onclick="location.href='romance.html'">
-    <img src="https://i.imgur.com/cN0CvCR.jpeg" alt="Ning in Paris" class="hero-image">
+    <div class="hero-slide" id="heroSlide">
+      <img src="https://i.imgur.com/cN0CvCR.jpeg" alt="Slide 1">
+      <img src="https://i.imgur.com/HqvlQFl.jpeg" alt="Slide 2">
+      <img src="https://i.imgur.com/SXTNpbn.jpeg" alt="Slide 3">
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-text">This Week’s Exclusive: Did She Really Get Back With Him?</div>
-    <div class="hero-gradient"></div>
   </section>
 
   <section class="headline">
@@ -265,7 +233,6 @@ header h1 {
   </section>
 
   <section class="cards">
-
     <div class="card" onclick="location.href='style.html'">
       <h3>Fashion Breakdown: Stunning or Chaotic?</h3>
       <p>Ning’s cut-out sweater at the airport has fans divided.</p>
@@ -286,26 +253,22 @@ header h1 {
       <div class="shape" onclick="togglePopup(2)"></div>
       <div class="popup" id="popup-2">💬 “This industry eats you up unless you bite back.”</div>
     </div>
-
   </section>
 
   <section class="gallery">
-
-  <h2>Spotlight Photo Gallery</h2>
-  <p>Click to view your P-montage looks, red carpet edits, and scandal snaps!</p>
-
-  <div class="gallery-grid">
-    <a href="style.html"><img src="https://i.imgur.com/XxNlE92.png" alt="Look 1"></a>
-    <a href="style.html"><img src="https://i.imgur.com/tRQScUP.png" alt="Look 2"></a>
-    <a href="style.html"><img src="https://i.imgur.com/tB3laep.png" alt="Look 3"></a>
-    <a href="style.html"><img src="https://i.imgur.com/cohr4X0.png" alt="Look 4"></a>
-  </div>
-  
+    <h2>Spotlight Photo Gallery</h2>
+    <p>Click to view your P-montage looks, red carpet edits, and scandal snaps!</p>
+    <div class="gallery-grid">
+      <a href="style.html"><img src="https://i.imgur.com/XxNlE92.png" alt="Look 1"></a>
+      <a href="style.html"><img src="https://i.imgur.com/tRQScUP.png" alt="Look 2"></a>
+      <a href="style.html"><img src="https://i.imgur.com/tB3laep.png" alt="Look 3"></a>
+      <a href="style.html"><img src="https://i.imgur.com/cohr4X0.png" alt="Look 4"></a>
+    </div>
   </section>
 
   <section class="vote-section">
     <h2>Whose side are you on?</h2>
-      <button onclick="vote('a')">Ning × Xavier Shen</button>
+    <button onclick="vote('a')">Ning × Xavier Shen</button>
     <button onclick="vote('b')">Ning × Sariel Qi</button>
     <div id="vote-result"></div>
   </section>
@@ -315,47 +278,41 @@ header h1 {
   </footer>
 
   <script>
-  function togglePopup(index) {
-    const popup = document.getElementById(`popup-${index}`);
-    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-  }
-
-  function vote(option) {
-    const result = document.getElementById("vote-result");
-    if (option === 'a') {
-      result.textContent = "🔥 72% say Ning × Xavier Shen is real!";
-    } else {
-      result.textContent = "💥 28% still rooting for Sariel Qi!";
+    function togglePopup(index) {
+      const popup = document.getElementById(`popup-${index}`);
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
     }
-  }
 
-  const cardsContainer = document.querySelector('.cards');
-  const cards = document.querySelectorAll('.card');
-  let currentIndex = 0;
-  let autoScroll;
-
-  function startScroll() {
-    autoScroll = setInterval(() => {
-      currentIndex++;
-      if (currentIndex >= cards.length) {
-        currentIndex = 0;
+    function vote(option) {
+      const result = document.getElementById("vote-result");
+      if (option === 'a') {
+        result.textContent = "🔥 72% say Ning × Xavier Shen is real!";
+      } else {
+        result.textContent = "💥 28% still rooting for Sariel Qi!";
       }
+    }
+
+    // Auto scroll cards
+    const cardsContainer = document.querySelector('.cards');
+    const cards = document.querySelectorAll('.card');
+    let currentIndex = 0;
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % cards.length;
       const scrollX = cards[currentIndex].offsetLeft - cardsContainer.offsetLeft;
       cardsContainer.scrollTo({ left: scrollX, behavior: 'smooth' });
-    }, 3000);
-  }
+    }, 4000);
 
-  function stopScroll() {
-    clearInterval(autoScroll);
-  }
+    // Auto hero slideshow
+    const slideContainer = document.getElementById('heroSlide');
+    const totalSlides = slideContainer.children.length;
+    let slideIndex = 0;
 
-  // 自动开始
-  startScroll();
-
-  // 鼠标悬停暂停，离开恢复
-  cardsContainer.addEventListener('mouseenter', stopScroll);
-  cardsContainer.addEventListener('mouseleave', startScroll);
-</script>
-
+    setInterval(() => {
+      slideIndex = (slideIndex + 1) % totalSlides;
+      slideContainer.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }, 5000);
+  </script>
 </body>
 </html>
+
