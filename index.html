@@ -321,33 +321,34 @@ header h1 {
   </footer>
 
   <script>
-    function togglePopup(index) {
-      const popup = document.getElementById(popup-${index});
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+  function togglePopup(index) {
+    const popup = document.getElementById(`popup-${index}`);
+    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+  }
+
+  function vote(option) {
+    const result = document.getElementById("vote-result");
+    if (option === 'a') {
+      result.textContent = "🔥 72% say Ning × Xavier Shen is real!";
+    } else {
+      result.textContent = "💥 28% still rooting for Sariel Qi!";
     }
+  }
 
-    function vote(option) {
-      const result = document.getElementById("vote-result");
-      if (option === 'a') {
-        result.textContent = "🔥 72% say Ning × Xavier Shen is real!";
-      } else {
-        result.textContent = "💥 28% still rooting for Sariel Qi!";
-      }
+  const cardsContainer = document.querySelector('.cards');
+  const cards = document.querySelectorAll('.card');
+  let currentIndex = 0;
+
+  setInterval(() => {
+    currentIndex++;
+    if (currentIndex >= cards.length) {
+      currentIndex = 0;
     }
+    const scrollX = cards[currentIndex].offsetLeft - cardsContainer.offsetLeft;
+    cardsContainer.scrollTo({ left: scrollX, behavior: 'smooth' });
+  }, 3000);
+</script>
 
-    const cardsContainer = document.querySelector('.cards');
-    const cards = document.querySelectorAll('.card');
-    let currentIndex = 0;
-
-    setInterval(() => {
-      currentIndex++;
-      if (currentIndex >= cards.length) {
-        currentIndex = 0;
-      }
-      const scrollX = cards[currentIndex].offsetLeft - cardsContainer.offsetLeft;
-      cardsContainer.scrollTo({ left: scrollX, behavior: 'smooth' });
-    }, 3000);
-  </script>
 
 </body>
 </html>
