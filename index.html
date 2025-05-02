@@ -338,17 +338,30 @@ header h1 {
   const cardsContainer = document.querySelector('.cards');
   const cards = document.querySelectorAll('.card');
   let currentIndex = 0;
+  let autoScroll;
 
-  setInterval(() => {
-    currentIndex++;
-    if (currentIndex >= cards.length) {
-      currentIndex = 0;
-    }
-    const scrollX = cards[currentIndex].offsetLeft - cardsContainer.offsetLeft;
-    cardsContainer.scrollTo({ left: scrollX, behavior: 'smooth' });
-  }, 3000);
+  function startScroll() {
+    autoScroll = setInterval(() => {
+      currentIndex++;
+      if (currentIndex >= cards.length) {
+        currentIndex = 0;
+      }
+      const scrollX = cards[currentIndex].offsetLeft - cardsContainer.offsetLeft;
+      cardsContainer.scrollTo({ left: scrollX, behavior: 'smooth' });
+    }, 3000);
+  }
+
+  function stopScroll() {
+    clearInterval(autoScroll);
+  }
+
+  // 自动开始
+  startScroll();
+
+  // 鼠标悬停暂停，离开恢复
+  cardsContainer.addEventListener('mouseenter', stopScroll);
+  cardsContainer.addEventListener('mouseleave', startScroll);
 </script>
-
 
 </body>
 </html>
