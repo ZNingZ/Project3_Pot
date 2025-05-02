@@ -68,12 +68,6 @@
       text-align: center;
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1.5rem;
-    }
-
     .placeholder-photo {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -86,6 +80,48 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       cursor: pointer;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-post .gallery-section {
+      max-width: 720px;
+      text-align: left;
+    }
+
+    .feature-post h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    .feature-post p {
+      margin-bottom: 1.2rem;
+      text-align: left;
+    }
+
+    .feature-post .description {
+      color: #444;
+    }
+
+    .feature-post .feature-image {
+      max-width: 720px;
+      height: 350px;
+      margin: 0 auto 3rem;
+      font-size: 1.2rem;
+      background: #ddd;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      cursor: default;
     }
 
     footer {
@@ -159,6 +195,21 @@
     <a href="trending.html">Trending</a>
   </nav>
 
+  <!-- Fashion Breakdown Post -->
+  <section class="feature-post">
+    <div class="gallery-section">
+      <h2>Fashion Breakdown: Stunning or Chaotic?</h2>
+      <p>Ning’s cut-out sweater at the airport has fans divided.</p>
+      <p class="description">
+        Onlookers were quick to snap photos of Ning as she strutted through the terminal in an oversized trench coat and a shocking cut-out knit underneath. Some praised her avant-garde boldness, while others questioned if it was fashion or faux-pas. Either way, she’s trending again.
+      </p>
+      <div class="feature-image">
+        [ Fashion Post Photo ]
+      </div>
+    </div>
+  </section>
+
+  <!-- Original Photo Gallery -->
   <section class="gallery-section">
     <h2>Spotlight Photo Gallery</h2>
     <div class="gallery-grid">
